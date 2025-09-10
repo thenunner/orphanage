@@ -1,0 +1,29 @@
+# --------------------------
+# Orphanage Configuration Template
+# --------------------------
+# Copy this file to config.yml and edit with your settings
+
+# Enable/disable backends
+Enable_Deluge: true
+Enable_Qbit: true
+
+# Deluge settings
+Deluge_Url: "http://YOUR_DELUGE_IP:8112"
+Deluge_Pass: "YOUR_DELUGE_PASSWORD"
+Deluge_Torrent_Folder: "/data/torrents/deluge"
+Deluge_Path_In: "/data"
+Deluge_Path_Out: "/mnt/user/data"
+
+# qBittorrent settings
+Qbit_Url: "http://YOUR_QBIT_IP:8090"
+Qbit_User: "YOUR_QBIT_USERNAME"
+Qbit_Pass: "YOUR_QBIT_PASSWORD"
+Qbit_Torrent_Folder: "/data/torrents/qbit"
+Qbit_Path_In: "/data"
+Qbit_Path_Out: "/mnt/user/data"
+
+# --------------------------
+# Logging
+# --------------------------
+# Levels: DEBUG, INFO, WARNING, ERROR, CRITICAL
+Log_Level: INFO
