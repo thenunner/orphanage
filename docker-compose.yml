@@ -1,0 +1,35 @@
+services:
+  orphanage:
+    container_name: orphanage
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /appdata/orphanage
+    command: >
+      uvicorn app:app
+      --host 0.0.0.0
+      --port 3750
+    ports:
+      - "3750:3750"
+    volumes:
+      # App code + gui + config (current directory)
+      - ./:/appdata/orphanage:rw
+
+      # Your data directory - EDIT THIS PATH
+      # Examples:
+      # Unraid: /mnt/user/data:/data:rw
+      # Synology: /volume1/downloads:/data:rw
+      # Linux: /home/user/downloads:/data:rw
+      # Windows: C:/Downloads:/data:rw
+      - /your/data/path:/data:rw
+
+    environment:
+      - TZ=America/Chicago
+      - PYTHONUNBUFFERED=1
+
+    # Run as user - adjust for your system
+    # Unraid: "99:100"
+    # Most Linux: "1000:1000" 
+    user: "99:100"
+
+    restart: unless-stopped
