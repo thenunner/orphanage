@@ -2,7 +2,7 @@ services:
   orphanage:
     container_name: orphanage
     build:
-      context: .
+      context: https://github.com/thenunner/orphanage.git
       dockerfile: Dockerfile
     working_dir: /appdata/orphanage
     command: >
