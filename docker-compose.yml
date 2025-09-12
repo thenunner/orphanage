@@ -23,6 +23,11 @@ services:
       # Windows: C:/Downloads:/data:rw
       - /your/data/path:/data:rw
 
+    # If using Unraid, add so WebUI is available in GUI
+    #
+    #labels:
+    #  net.unraid.docker.webui: "http://[IP]:3750"
+
     environment:
       - TZ=America/Chicago
       - PYTHONUNBUFFERED=1
