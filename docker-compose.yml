@@ -32,9 +32,16 @@ services:
       - TZ=America/Chicago
       - PYTHONUNBUFFERED=1
 
+    networks: 
+      - yourqbitcontainernetwork
+
     # Run as user - adjust for your system
     # Unraid: "99:100"
     # Most Linux: "1000:1000" 
     user: "99:100"
 
     restart: unless-stopped
+
+networks:
+  "yourqbitcontainernetwork": 
+    external: true
