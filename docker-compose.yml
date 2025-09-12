@@ -27,7 +27,7 @@ services:
     #
     #labels:
     #  net.unraid.docker.webui: "http://[IP]:3750"
-    #  net.unraid.docker.icon: "https://github.com/thenunner/orphanage/blob/main/orphanage.png"
+    #  net.unraid.docker.icon: "https://raw.githubusercontent.com/thenunner/orphanage/main/orphanage.png"
 
     environment:
       - TZ=America/Chicago
