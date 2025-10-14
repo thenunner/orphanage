@@ -999,15 +999,6 @@ class ScannerRunner:
 _runner: Optional["ScannerRunner"] = None
 _thread: Optional[threading.Thread] = None
 
-def _check_scanner_timeout():
-    """Check if scanner has been running too long and force stop"""
-    global _runner, _thread
-    if _thread and _thread.is_alive() and _runner:
-        if hasattr(_runner, '_start_time') and _runner._start_time:
-            if time.time() - _runner._start_time > 300:  # 5 minutes
-                logger.warning("Scanner timeout - forcing stop")
-                _runner.stop()
-
 def start_scan(cfg: Dict):
     global _runner, _thread
     if _thread and _thread.is_alive():
@@ -1015,9 +1006,6 @@ def start_scan(cfg: Dict):
     _runner = ScannerRunner(cfg)
     _thread = threading.Thread(target=_runner.run, daemon=True)
     _thread.start()
-    
-    # Add timeout monitoring
-    threading.Timer(300.0, _check_scanner_timeout).start()  # 5 min timeout
     logger.info("Scan started")
 
 def stop_scan():
