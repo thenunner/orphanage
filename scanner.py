@@ -212,8 +212,11 @@ class QbitClient:
         if vr.status_code != 200:
             raise RuntimeError(f"qBittorrent session verify failed (HTTP {vr.status_code})")
 
-    def torrents(self) -> List[Dict]:
-        r = self.s.get(f"{self.base}/api/v2/torrents/info", timeout=self.timeout)
+    def torrents(self, hashes: str = None) -> List[Dict]:
+        params = {}
+        if hashes:
+            params["hashes"] = hashes
+        r = self.s.get(f"{self.base}/api/v2/torrents/info", params=params, timeout=self.timeout)
         r.raise_for_status()
         return r.json()
 
@@ -1431,7 +1434,7 @@ def _get_qbit_runaway_info(cfg: Dict, torrent_hash: str, torrent_name: str, cate
             return {}
             
         # Get torrent details
-        torrents = qbit_cli.torrents(torrent_hashes=torrent_hash)
+        torrents = qbit_cli.torrents(hashes=torrent_hash)
         if not torrents:
             logger.warning("Torrent %s not found in qBittorrent", torrent_hash)
             return {}
